@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navbar-admin.css'
+import Gestionserveur from './Gestionserveur'
 
 const Navbaradmin = () => {
   return (
@@ -24,7 +25,7 @@ const Navbaradmin = () => {
 </div>
 
 <div className='content'>
-
+<Gestionserveur />
 </div>
 </div>
 </div>

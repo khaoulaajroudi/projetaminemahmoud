@@ -11,6 +11,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar"
 import Card from './components/Card-Commande/Card'
+import Navbaradmin from './components/Dashboard-admin/Navbar-admin/Navbar-admin'
 function App() {
   const isAuth = localStorage.getItem("token");
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function App() {
       </div>
 
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Navbaradmin />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/list" element={<Card />} />
         <Route element={<PrivateRoute />}>

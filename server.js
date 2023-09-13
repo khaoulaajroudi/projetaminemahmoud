@@ -18,7 +18,8 @@ app.use(cors());
 //running passport
 app.use(passport.initialize());
 //ROUTE
-app.use("/user", require("./routes/user"));
+app.use("/serveur", require("./routes/user"));
+app.use("/commande", require("./routes/commande"));
 app.listen(process.env.PORT, (err) => {
   err ? console.log(err) : console.log("server is running...");
 });

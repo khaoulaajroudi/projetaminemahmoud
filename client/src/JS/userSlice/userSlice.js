@@ -1,27 +1,27 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-export const userRegister = createAsyncThunk("user/register", async (user) => {
+export const serveurRegister = createAsyncThunk("serveur/register", async (serveur) => {
   try {
     let response = await axios.post(
-      "http://localhost:5000/user/register",
-      user
+      "http://localhost:5000/serveur/register",
+      serveur
     );
     return await response;
   } catch (error) {
     console.log(error);
   }
 });
-export const userLogin = createAsyncThunk("user/login", async (user) => {
+export const serveurLogin = createAsyncThunk("serveur/login", async (serveur) => {
   try {
-    let response = await axios.post("http://localhost:5000/user/login", user);
+    let response = await axios.post("http://localhost:5000/serveur/login", serveur);
     return await response;
   } catch (error) {
     console.log(error);
   }
 });
-export const userCurrent = createAsyncThunk("user/current", async () => {
+export const serveurCurrent = createAsyncThunk("serveur/current", async () => {
   try {
-    let response = await axios.get("http://localhost:5000/user/current", {
+    let response = await axios.get("http://localhost:5000/serveur/current", {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -33,56 +33,56 @@ export const userCurrent = createAsyncThunk("user/current", async () => {
 });
 
 const initialState = {
-  user: null,
+  serveur: null,
   status: null,
 };
 
-export const userSlice = createSlice({
-  name: "user",
+export const serveurSlice = createSlice({
+  name: "serveur",
   initialState,
   reducers: {
     logout: (state, action) => {
-      state.user = null;
+      state.serveur = null;
       localStorage.removeItem("token");
     },
   },
   extraReducers: {
-    [userRegister.pending]: (state) => {
+    [serveurRegister.pending]: (state) => {
       state.status = "pending";
     },
-    [userRegister.fulfilled]: (state, action) => {
+    [serveurRegister.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.user = action.payload.data.newUserToken;
+      state.serveur = action.payload.data.newserveurToken;
       localStorage.setItem("token", action.payload.data.token);
     },
-    [userRegister.rejected]: (state) => {
+    [serveurRegister.rejected]: (state) => {
       state.status = "fail";
     },
-    [userLogin.pending]: (state) => {
+    [serveurLogin.pending]: (state) => {
       state.status = "pending";
     },
-    [userLogin.fulfilled]: (state, action) => {
+    [serveurLogin.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.user = action.payload.data.user;
+      state.serveur = action.payload.data.serveur;
       localStorage.setItem("token", action.payload.data.token);
     },
-    [userLogin.rejected]: (state) => {
+    [serveurLogin.rejected]: (state) => {
       state.status = "fail";
     },
-    [userCurrent.pending]: (state) => {
+    [serveurCurrent.pending]: (state) => {
       state.status = "pending";
     },
-    [userCurrent.fulfilled]: (state, action) => {
+    [serveurCurrent.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.user = action.payload?.data.user;
+      state.serveur = action.payload?.data.serveur;
     },
-    [userCurrent.rejected]: (state) => {
+    [serveurCurrent.rejected]: (state) => {
       state.status = "fail";
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { logout } = userSlice.actions;
+export const { logout } = serveurSlice.actions;
 
-export default userSlice.reducer;
+export default serveurSlice.reducer;

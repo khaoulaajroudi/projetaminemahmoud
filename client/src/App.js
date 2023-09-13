@@ -5,7 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/LoginIN/Login";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { logout, userCurrent } from "./JS/userSlice/userSlice";
+import { logout, serveurCurrent } from "./JS/userSlice/userSlice";
 import Profil from "./components/Profil";
 import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./components/Home/Home";
@@ -18,7 +18,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     if (isAuth) {
-      dispatch(userCurrent());
+      dispatch(serveurCurrent());
     }
   }, []);
   return (
@@ -38,8 +38,9 @@ function App() {
       </div>
 
       <Routes>
-        <Route exact path="/" element={<Navbaradmin />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/re" element={<Register/>} />
         <Route path="/list" element={<Card />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profil" element={<Profil />} />

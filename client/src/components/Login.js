@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { userLogin } from "../JS/userSlice/userSlice";
+import { serveurLogin } from "../JS/userSlice/userSlice";
 
 const Login = () => {
   const [login, setlogin] = useState({
@@ -46,7 +46,7 @@ const Login = () => {
           <button
             className="btn btn-lg btn-primary btn-block"
             onClick={() => {
-              dispatch(userLogin(login));
+              dispatch(serveurLogin(login));
               setTimeout(() => {
                 navigate("/profil");
               }, 1000);

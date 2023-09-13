@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { userRegister } from "../JS/userSlice/userSlice";
+import { serveurRegister } from "../JS/userSlice/userSlice";
 
 const Register = () => {
   const [register, setregister] = useState({
@@ -61,7 +61,7 @@ const Register = () => {
           <button
             className="btn btn-lg btn-primary btn-block"
             onClick={() => {
-              dispatch(userRegister(register));
+              dispatch(serveurRegister(register));
             }}
           >
             register

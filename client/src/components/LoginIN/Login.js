@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../JS/userSlice/userSlice";
+import { serveurLogin } from "../../JS/userSlice/userSlice";
 
 const Login = () => {
   const [login, setlogin] = useState({
@@ -36,7 +36,7 @@ const Login = () => {
           <input
             type="button"
             value="submit"
-            onClick={() => (dispatch(userLogin(login)), navigate("/"))}
+            onClick={() => (dispatch(serveurLogin(login)), navigate("/"))}
           />
         </div>
       </form>

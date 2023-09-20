@@ -1,4 +1,4 @@
-.navbar{
+.navbarr{
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -34,15 +34,19 @@ margin: 50px;
  }
  .box-menu{
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
     padding: 10px;
  }
  .box-content{
+    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 30px;
+    margin-left: 300px;
 
  }
  .menu{
@@ -52,6 +56,43 @@ width: 40%;
 width: 50%;
  }
 
-
+ svg { margin-right: 8px; }
+      
+      &:hover { background-color: var(--sidebar-hover-link); }
+      
+      &.active {
+        background-color: var(--sidebar-active-link);
+        
+        &:before {
+          content: '';
+          position: absolute;
+          right: 0;
+          background-color: var(--action-color);
+          height: 100%;
+          width: 4px;
+        }
+      }
+      .mode-switch {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        color: var(--app-content-main-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 8px;
+        cursor: pointer;
+        
+        .moon {
+          fill: var(--app-content-main-color);
+        }
+      }
+      
+      .mode-switch.active .moon {
+        fill: none;
+      }
+      
+      
 
  

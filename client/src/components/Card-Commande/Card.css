@@ -118,3 +118,8 @@ a
 .product-links a:hover {
     color: #fbb72c;
 }
+.list-product{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }

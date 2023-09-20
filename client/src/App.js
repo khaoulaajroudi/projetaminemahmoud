@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Register from "./components/Register";
 import Login from "./components/LoginIN/Login";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -11,7 +10,10 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar"
 import Card from './components/Card-Commande/Card'
-import Navbaradmin from './components/Dashboard-admin/Navbar-admin/Navbar-admin'
+import List from "./components/Card-Commande/List";
+import Gestionserveur from "./components/Dashboard-admin/Navbar-admin/Gestionserveur";
+import ProfilUsers from "./components/Dashboard-admin/ProfilUsers";
+import Profiladmin from "./components/Dashboard-admin/Navbar-admin/Profiladmin";
 function App() {
   const isAuth = localStorage.getItem("token");
   const dispatch = useDispatch();
@@ -24,7 +26,6 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-      <Navbar />
         {isAuth ? (
           <button
             onClick={() => {
@@ -40,8 +41,10 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
-        <Route path="/re" element={<Register/>} />
-        <Route path="/list" element={<Card />} />
+        <Route path="/list" element={<List />} />
+                 <Route path="/dashbord" element={<Profiladmin  />} />
+          <Route path="/produits" element={< ProfilUsers/>} />
+          <Route path="/users" element={< Gestionserveur  />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profil" element={<Profil />} />
         </Route>{" "}

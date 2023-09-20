@@ -31,7 +31,31 @@ export const serveurCurrent = createAsyncThunk("serveur/current", async () => {
     console.log(error);
   }
 });
+export const getuser=createAsyncThunk('serveur/get',async()=>{
+  try{
+let result=axios.get('http://localhost:5000/serveur/all')
+return result
+  }catch(error){
+  console.log(error)
+  }
+})
+export const deleteuser=createAsyncThunk('serveur/delete',async(id)=>{
+  try{
+let result=axios.delete(`http://localhost:5000/serveur/${id}`)
+return result
+  }catch(error){
+  console.log(error)
+  }
+})
 
+export const updateuser=createAsyncThunk('serveur/update',async({id, user})=>{
+  try{
+let result=axios.put(`http://localhost:5000/serveur/${id}`,user)
+return result
+  }catch(error){
+  console.log(error)
+  }
+})
 const initialState = {
   serveur: null,
   status: null,
@@ -53,7 +77,7 @@ export const serveurSlice = createSlice({
     [serveurRegister.fulfilled]: (state, action) => {
       state.status = "succcessssss";
       state.serveur = action.payload.data.newserveurToken;
-      localStorage.setItem("token", action.payload.data.token);
+      localStorage.setItem("token", action.payload?.data?.token);
     },
     [serveurRegister.rejected]: (state) => {
       state.status = "fail";
@@ -64,7 +88,7 @@ export const serveurSlice = createSlice({
     [serveurLogin.fulfilled]: (state, action) => {
       state.status = "succcessssss";
       state.serveur = action.payload.data.serveur;
-      localStorage.setItem("token", action.payload.data.token);
+      localStorage.setItem("token", action.payload?.data?.token);
     },
     [serveurLogin.rejected]: (state) => {
       state.status = "fail";
@@ -74,11 +98,40 @@ export const serveurSlice = createSlice({
     },
     [serveurCurrent.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.serveur = action.payload?.data.serveur;
+      state.serveur = action.payload?.data?.serveur;
     },
     [serveurCurrent.rejected]: (state) => {
       state.status = "fail";
     },
+    [getuser.pending]:(state)=>{
+      state.status="pending";
+  },
+  [getuser.fulfilled]:(state,action)=>{
+      state.status="success";
+      state.user=action.payload?.data?.list
+  },
+  [getuser.rejected]:(state,action)=>{
+      state.status="failed";
+  },
+  [deleteuser.pending]:(state)=>{
+      state.status="pending";
+  },
+  [deleteuser.fulfilled]:(state,action)=>{
+      state.status="success";
+  },
+  [deleteuser.rejected]:(state,action)=>{
+      state.status="failed";
+  },
+  [updateuser.pending]:(state)=>{
+      state.status="pending";
+  },
+  [updateuser.fulfilled]:(state,action)=>{
+      state.status="success";
+      state.user=action.payload?.data?.user
+  },
+  [updateuser.rejected]:(state,action)=>{
+      state.status="failed";
+  }
   },
 });
 

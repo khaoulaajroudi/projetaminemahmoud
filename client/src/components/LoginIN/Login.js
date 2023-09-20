@@ -3,6 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { serveurLogin } from "../../JS/userSlice/userSlice";
+import Navbar from "../Navbar/Navbar";
 
 const Login = () => {
   const [login, setlogin] = useState({
@@ -13,6 +14,8 @@ const Login = () => {
   const isAuth = localStorage.getItem("token");
   let navigate = useNavigate();
   return (
+    <>
+    <Navbar />
     <div class="center">
       <h1>Please Sign IN</h1>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -41,6 +44,7 @@ const Login = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

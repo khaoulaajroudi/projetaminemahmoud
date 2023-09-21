@@ -6,6 +6,9 @@ const Home = () => {
   return (
     <div className='cadre-page'>
 <Navbar />
+<div className='bann'>
+  <img src='./images/bann.jpg' />
+</div>
     </div>
   )
 }

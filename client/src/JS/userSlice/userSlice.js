@@ -87,7 +87,7 @@ export const serveurSlice = createSlice({
     },
     [serveurLogin.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.serveur = action.payload.data.serveur;
+      state.serveur = action.payload?.data?.serveur;
       localStorage.setItem("token", action.payload?.data?.token);
     },
     [serveurLogin.rejected]: (state) => {
@@ -98,7 +98,7 @@ export const serveurSlice = createSlice({
     },
     [serveurCurrent.fulfilled]: (state, action) => {
       state.status = "succcessssss";
-      state.serveur = action.payload?.data?.serveur;
+      state.serveur = action.payload?.data?.user;
     },
     [serveurCurrent.rejected]: (state) => {
       state.status = "fail";

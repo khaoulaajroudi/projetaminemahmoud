@@ -41,7 +41,7 @@ commandeRouter.put("/:id", async (req, res) => {
       { _id: req.params.id },
       { $set: { ...req.body } }
     );
-    res.send({ msg: "commande updated" });
+    res.send({commande:result, msg: "commande updated" });
   } catch (error) {
     console.log(error);
   }
